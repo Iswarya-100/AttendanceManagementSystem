@@ -1,10 +1,17 @@
 import pandas as pd
+import os
 from flask import Flask, render_template, request, redirect, url_for
 
-STUDENTS = pd.read_csv("data/students.csv").to_dict(orient="series")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "data", "students.csv")
+
+STUDENTS = pd.read_csv(CSV_PATH).to_dict(orient="series")
+
 RNOS = STUDENTS["Roll Number"].values
 NAMES = STUDENTS["Student Name"].values
 nos = []
+
 
 app = Flask(__name__)
 
