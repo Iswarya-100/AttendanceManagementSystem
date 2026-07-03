@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Attendance</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+        
+    </head>
+    <body>
+        <form method="post" action="/get_details">
+
+            <div class="attendance-options">
+                <label class="option">
+                    <input type="radio" value="present" name="display">
+                    <span> Make All Present</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" value="absent" name="display">
+                    <span> Make All Absent</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" value="revert" name="display">
+                    <span> Revert </span>
+                </label>
+            </div>
+
+            <table cellpadding="10" border="1" cellspacing="0" width="50%" align="center" >
+                <tbody>
+                    {% for i in range(RNOS|length) %}
+                    <tr>
+                        <td class="student-name"> {{NAMES[i]}}</td>
+                        <td>
+                            <button type="button" name="no" value="{{RNOS[i]}}" class="roll-btn" onclick="change_color(this)">  <!--roll-btn-->
+                                {{RNOS[i]}}
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <input type="hidden" name="is_present" id="is_present">
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-outline-primary btn-lg px-4 py-2">
+                    COMPLETE
+                </button>
+            </div>
+            
+        </form>
+
+        <script>
+
+            const radios = document.querySelectorAll('input[name="display"]');
+            const buttons = document.querySelectorAll('.roll-btn');
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const display = this.value;
+
+                buttons.forEach(button => {
+                    button.classList.remove("present", "absent");
+
+                    if (display === "present") {
+                        button.classList.add("present");
+                    }
+                    else if (display === "absent") {
+                        button.classList.add("absent");
+                    }
+            // If "revert" is selected, don't add any class.
+            // The button returns to its default (.roll-btn) blue style.
+                    });
+                });
+            });
+
+            function change_color(button) {
+
+                if (button.classList.contains("present")) {
+                button.classList.remove("present");
+                button.classList.add("absent");
+            }
+                else if (button.classList.contains("absent")) {
+                button.classList.remove("absent");
+            }
+            else {
+                button.classList.add("present");
+            }
+
+        }
+
+        document.querySelector("form").addEventListener("submit", function () {
+
+    const attendance = {};
+    const buttons = document.querySelectorAll(".roll-btn");
+
+    buttons.forEach(button => {
+        const rollNo = button.value;
+
+        if (button.classList.contains("present")) {
+            attendance[rollNo] = true;
+        } else {
+            attendance[rollNo] = false;
+        }
+    });
+
+    document.getElementById("is_present").value = JSON.stringify(attendance);
+});
+            
+        </script>
+
+    </body>
+</html>

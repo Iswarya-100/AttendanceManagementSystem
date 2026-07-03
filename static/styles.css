@@ -1,0 +1,136 @@
+.attendance-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;          /* 20px */
+    margin: 1.25rem 0;     /* 20px */
+}
+
+.option input[type="radio"] {
+    display: none;
+}
+
+.option span {
+    display: inline-block;
+    padding: 0.75rem 1.5625rem;      /* 12px 25px */
+    border: 0.125rem solid #0d6efd;  /* 2px */
+    border-radius: 0.625rem;         /* 10px */
+    font-size: 1.125rem;             /* 18px */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #0d6efd;
+}
+
+.option input[type="radio"]:checked + span {
+    background-color: #0d6efd;
+    color: white;
+    box-shadow: 0 0.25rem 0.625rem rgba(13, 110, 253, 0.4); /* 4px 10px */
+}
+
+.option span:hover {
+    background-color: #e9f2ff;
+    transform: translateY(-0.125rem); /* 2px */
+}
+
+.option-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 0.125rem solid #0d6efd;
+    border-radius: 0.625rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #0d6efd;
+}
+
+.option-button:hover {
+    background-color: #e9f2ff;
+    transform: translateY(-0.125rem);
+}
+
+.option-button:active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.roll-btn {
+    display: inline-block;
+    min-width: 5rem;
+    padding: 0.6rem 1.2rem;
+    border: 0.125rem solid #0d6efd;
+    border-radius: 0.5rem;
+    background-color: #0d6efd;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0.25rem 0.5rem rgba(13, 110, 253, 0.2);
+}
+
+.roll-btn:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.4rem 0.8rem rgba(13, 110, 253, 0.3);
+}
+
+.roll-btn:active {
+    transform: translateY(0);
+    background-color: #0a58ca;
+}
+
+.roll-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.roll-btn.present {
+    background-color: #198754;
+    border-color: #198754;
+    color: white;
+}
+
+.roll-btn.absent {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.student-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 0.8rem 1rem;
+    letter-spacing: 0.02rem;
+    vertical-align: middle;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 2rem auto;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+table tr {
+    transition: background-color 0.2s ease;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table tr:hover {
+    background-color: #eef5ff;
+}
+
+table td {
+    border: 1px solid #dee2e6;
+}
